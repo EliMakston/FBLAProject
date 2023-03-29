@@ -4,13 +4,14 @@ const grade9Check = document.getElementById('grade9');
 const grade10Check = document.getElementById('grade10');
 const grade11Check = document.getElementById('grade11');
 const grade12Check = document.getElementById('grade12');
+const gradeLevelHead = document.getElementById('gradeLevelHead');
+const firstNameHead = document.getElementById('firstNameHead');
 let rowCount = 0;
 let gradeLevelArray = [9, 10, 11, 12];
 let currentStudents = [];
-const gradeLevelHead = document.getElementById('gradeLevelHead');
-const firstNameHead = document.getElementById('firstNameHead');
 let gradeLevelAsc = false;
 let firstNameAsc = true;
+let lastNameAsc = true;
 
 gradeLevelHead.addEventListener('click', (event) => {
   if (!gradeLevelAsc) {
@@ -29,6 +30,16 @@ firstNameHead.addEventListener('click', (event) => {
   } else {
     filterByFirstName('desc');
     firstNameAsc = false;
+  }
+});
+
+lastNameHead.addEventListener('click', (event) => {
+  if (!lastNameAsc) {
+    filterByLastName('asc');
+    lastNameAsc = true;
+  } else {
+    filterByLastName('desc');
+    lastNameAsc = false;
   }
 })
 
@@ -175,6 +186,35 @@ function filterByFirstName(order) {
     for (let i = characters.length - 1; i >= 0;) {
       for (let z = 0; z < temp.length; z++) {
         if (temp[z].firstName[0].toLowerCase() === characters[i]) {
+          returnList.push(temp[z]);
+        }
+      }
+      i = i - 1;
+    }
+  }
+  currentStudents = returnList;
+  updateTable();
+}
+
+function filterByLastName(order) {
+  const characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  const temp = [];
+  for (let i = 0; i < currentStudents.length; i++) {
+    temp.push(currentStudents[i]);
+  }
+  const returnList = [];
+  if (order === 'desc') {
+    for (let i = 0; i < characters.length; i++) {
+      for (let z = 0; z < temp.length; z++) {
+        if (temp[z].lastName[0].toLowerCase() === characters[i]) {
+          returnList.push(temp[z]);
+        }
+      }
+    }
+  } else if (order === 'asc') {
+    for (let i = characters.length - 1; i >= 0;) {
+      for (let z = 0; z < temp.length; z++) {
+        if (temp[z].lastName[0].toLowerCase() === characters[i]) {
           returnList.push(temp[z]);
         }
       }
