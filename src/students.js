@@ -6,12 +6,14 @@ const grade11Check = document.getElementById('grade11');
 const grade12Check = document.getElementById('grade12');
 const gradeLevelHead = document.getElementById('gradeLevelHead');
 const firstNameHead = document.getElementById('firstNameHead');
+const idHead = document.getElementById('idHead');
 let rowCount = 0;
 let gradeLevelArray = [9, 10, 11, 12];
 let currentStudents = [];
 let gradeLevelAsc = false;
 let firstNameAsc = true;
 let lastNameAsc = true;
+let idAsc = false;
 
 gradeLevelHead.addEventListener('click', (event) => {
   if (!gradeLevelAsc) {
@@ -42,6 +44,16 @@ lastNameHead.addEventListener('click', (event) => {
     lastNameAsc = false;
   }
 })
+
+idHead.addEventListener('click', (event) => {
+  if (!idAsc) {
+    filterById('asc');
+    idAsc = true;
+  } else {
+    filterById('desc');
+    idAsc = false;
+  }
+});
 
 grade9Check.addEventListener('change', (event) => {
   updateGradeLevelArray(event, 9);
@@ -114,8 +126,6 @@ async function gatherStudentData() {
   }
   return students;
 }
-
-updateTable();
 
 function updateGradeLevelArray(event, gradeNumber) {
   currentStudents = [];
@@ -219,6 +229,33 @@ function filterByLastName(order) {
         }
       }
       i = i - 1;
+    }
+  }
+  currentStudents = returnList;
+  updateTable();
+}
+
+function filterById(order) {
+  const temp = [];
+  for (let i = 0; i < currentStudents.length; i++) {
+    temp.push(currentStudents[i]);
+  }
+  const returnList = [];
+  if (order === 'asc') {
+    for (let i = 0; i < temp.length; i++) {
+      for (let z = 0; z < temp.length; z++) {
+        if (temp[z].id * 1 === i) {
+          returnList.push(temp[z]);
+        }
+      }
+    }
+  } else if (order === 'desc') {
+    for (let i = temp.length - 1; i >= 0; i--) {
+      for (let z = 0; z < temp.length; z++) {
+        if (temp[z].id * 1 === i) {
+          returnList.push(temp[z]);
+        }
+      }
     }
   }
   currentStudents = returnList;
