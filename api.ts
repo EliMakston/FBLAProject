@@ -28,4 +28,8 @@ api.get('/students', (req, res) => {
   res.send(temp);
 });
 
+api.post('/students', (req, res) => {
+  
+});
+
 module.exports = api;

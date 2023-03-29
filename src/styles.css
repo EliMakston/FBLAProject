@@ -75,3 +75,24 @@ input {
 .clickable:hover {
   cursor: pointer;
 }
+
+a {
+  color: royalblue;
+  margin-left: 25px;
+}
+
+form {
+  margin-top: 15px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 85%;
+}
+
+input, label {
+  margin-top: 3px;
+}
+
+input {
+  border: 1px, solid, black;
+  border-radius: 4px;
+}

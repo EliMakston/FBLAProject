@@ -8,6 +8,7 @@ const grade12Check = document.getElementById("grade12");
 const gradeLevelHead = document.getElementById("gradeLevelHead");
 const firstNameHead = document.getElementById("firstNameHead");
 const idHead = document.getElementById("idHead");
+const pointsHead = document.getElementById("pointsHead");
 let rowCount = 0;
 let gradeLevelArray = [9, 10, 11, 12];
 let currentStudents = [];
@@ -15,6 +16,7 @@ let gradeLevelAsc = false;
 let firstNameAsc = true;
 let lastNameAsc = true;
 let idAsc = false;
+let pointsAsc = false;
 gradeLevelHead.addEventListener("click", (event) => {
   if (!gradeLevelAsc) {
     filterByGrade("asc");
@@ -42,13 +44,13 @@ lastNameHead.addEventListener("click", (event) => {
     lastNameAsc = false;
   }
 });
-idHead.addEventListener("click", (event) => {
-  if (!idAsc) {
-    filterById("asc");
-    idAsc = true;
+pointsHead.addEventListener("click", (event) => {
+  if (!pointsAsc) {
+    filterByPointsAsc();
+    pointsAsc = true;
   } else {
-    filterById("desc");
-    idAsc = false;
+    filterByPointsDesc();
+    pointsAsc = false;
   }
 });
 grade9Check.addEventListener("change", (event) => {
@@ -219,27 +221,58 @@ function filterByLastName(order) {
   currentStudents = returnList;
   updateTable();
 }
-function filterById(order) {
+function filterByPointsAsc() {
   const temp = [];
   for (let i = 0; i < currentStudents.length; i++) {
     temp.push(currentStudents[i]);
   }
   const returnList = [];
-  if (order === "asc") {
-    for (let i = 0; i < temp.length; i++) {
-      for (let z = 0; z < temp.length; z++) {
-        if (temp[z].id * 1 === i) {
-          returnList.push(temp[z]);
-        }
+  let max = temp[0].points * 1;
+  let maxIndex = 0;
+  for (let i = 0; i < temp.length; i++) {
+    if (temp.length === 0) {
+      break;
+    }
+    if (temp[i].points * 1 > max) {
+      max = temp[i].points * 1;
+      maxIndex = i;
+    }
+    if (i + 1 >= temp.length) {
+      returnList.push(temp[maxIndex]);
+      temp.splice(maxIndex, 1);
+      i = -1;
+      if (temp.length > 0) {
+        max = temp[0].points * 1;
+        maxIndex = 0;
       }
     }
-  } else if (order === "desc") {
-    log.innerHTML = "This ran";
-    for (let i = temp.length - 1; i >= 0; i--) {
-      for (let z = 0; z < temp.length; z++) {
-        if (temp[z].id * 1 === i) {
-          returnList.push(temp[z]);
-        }
+  }
+  currentStudents = returnList;
+  updateTable();
+}
+function filterByPointsDesc() {
+  const temp = [];
+  for (let i = 0; i < currentStudents.length; i++) {
+    temp.push(currentStudents[i]);
+  }
+  const returnList = [];
+  let min = temp[0].points * 1;
+  let minIndex = 0;
+  for (let i = 0; i < temp.length; i++) {
+    if (temp.length === 0) {
+      break;
+    }
+    if (temp[i].points * 1 < min) {
+      min = temp[i].points * 1;
+      minIndex = i;
+    }
+    if (i + 1 >= temp.length) {
+      returnList.push(temp[minIndex]);
+      temp.splice(minIndex, 1);
+      i = -1;
+      if (temp.length > 0) {
+        min = temp[0].points * 1;
+        minIndex = 0;
       }
     }
   }

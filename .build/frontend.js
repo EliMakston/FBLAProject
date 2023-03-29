@@ -29,6 +29,9 @@ frontend.get("/students", (req, res) => {
 frontend.get("/events", (req, res) => {
   res.sendFile("/events.html", { root: dirhome });
 });
+frontend.get("/options", (req, res) => {
+  res.sendFile("/options.html", { root: dirhome });
+});
 frontend.get("/styles.css", (req, res) => {
   res.sendFile("/styles.css", { root: dirhome });
 });
