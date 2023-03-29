@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <head>
+    <title>Temp Students Page</title>
+  </head>
+  <div id='navbar'>
+    <a href='https://fblaproject.elimakston.repl.co/app/home'><div id='home' class='nav'>Home</div></a>
+    <a href='https://fblaproject.elimakston.repl.co/app/students'><div id='students' class='nav'>Students</div></a>
+    <a href='https://fblaproject.elimakston.repl.co/app/events'><div id='events' class='nav'>Events</div>
+  </div></a>
+  <div id='content'>
+    <h1 id='header'>Students</h1>
+    <h2>Roster</h2>
+    <h3>Grade Level</h3>
+    <div id='filters-div'>
+      <label for='grade9'>9: </label>
+      <input type="checkbox" id='grade9' name='grade9' value='9' checked/>
+      <label for='grade10'>10: </label>
+      <input type="checkbox" id='grade10' name='grade10' value='10' checked/>
+      <label for='grade11'>11: </label>
+      <input type="checkbox" id='grade11' name='grade11' value='11' checked/>
+      <label for='grade12'>12: </label>
+      <input type="checkbox" id='grade12' name='grade12' value='12' checked/>
+    </div>
+    <table id='roster'>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th id='gradeLevelHead' class='clickable'>Grade Level</th>
+        <th>Points</th>
+        <th>ID</th>
+      </tr>
+    </table>
+  </div>
+  <p id='log'></p>
+  <script src="students.js"></script>
+</html>

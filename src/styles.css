@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'Alexandria';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/alexandria/v1/UMBCrPdDqW66y0Y2usFeQCH18mulUxBvI9r7TpbAFp4.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* {
+  margin: 0;
+  font-family: Alexandria;
+  background-color: whitesmoke;
+}
+
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  margin-top: 20px;
+  height: 65px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.nav:hover {
+  cursor: pointer;
+  padding-bottom: 10px;
+  color: black;
+  transition: 100ms;
+}
+
+.nav {
+  transition: 100ms;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+#content {
+  margin-left: 2vw;
+  margin-right: 2vw;
+  padding-top: 10px;
+}
+
+h2 {
+  margin-top: 25px;
+}
+
+table {
+  margin-top: 15px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 85%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+input {
+  margin-right: 10px;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
