@@ -1,1 +1,4 @@
-package-lock.json
+node-modules/
+.build/
+.replit
+replit.nix
