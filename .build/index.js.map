@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../index.ts"],
+  "sourcesContent": ["import express from \"express\";\nimport type {Express, Response, Request} from \"express\";\nconst api = require('./api');\nconst frontend = require('./frontend');\nconst app : Express = express();\nconst dirhome = '/home/runner/FBLAProject/src'\nconst morgan = require('morgan');\n\nconst PORT = 8000;\n\napp.listen(() => {\n  console.log(`Now listening on port ${PORT}`);\n});\n\n//This will serve the initial html page and css\n//Not permanent, as I want this all to be handled by frontend\napp.get('/', (req, res) => {\n  res.sendFile('/index.html', {root: dirhome});\n});\n\napp.use(morgan('short'));\n\n//Commented out for replit's sake\napp.get('/styles.css', (req, res) => {\n  res.sendFile('/styles.css', {root: dirhome});\n});\n\napp.use('/api', api);\n\napp.use('/app', frontend);"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAA,qBAAoB;AAEpB,MAAM,MAAM,QAAQ,OAAO;AAC3B,MAAM,WAAW,QAAQ,YAAY;AACrC,MAAM,UAAgB,eAAAA,SAAQ;AAC9B,MAAM,UAAU;AAChB,MAAM,SAAS,QAAQ,QAAQ;AAE/B,MAAM,OAAO;AAEb,IAAI,OAAO,MAAM;AACf,UAAQ,IAAI,yBAAyB,MAAM;AAC7C,CAAC;AAID,IAAI,IAAI,KAAK,CAAC,KAAK,QAAQ;AACzB,MAAI,SAAS,eAAe,EAAC,MAAM,QAAO,CAAC;AAC7C,CAAC;AAED,IAAI,IAAI,OAAO,OAAO,CAAC;AAGvB,IAAI,IAAI,eAAe,CAAC,KAAK,QAAQ;AACnC,MAAI,SAAS,eAAe,EAAC,MAAM,QAAO,CAAC;AAC7C,CAAC;AAED,IAAI,IAAI,QAAQ,GAAG;AAEnB,IAAI,IAAI,QAAQ,QAAQ;",
+  "names": ["express"]
+}
