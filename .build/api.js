@@ -41,6 +41,32 @@ api.get("/students", (req, res) => {
   res.send(temp);
 });
 api.post("/students", (req, res) => {
+  const firstName = req.query.firstName;
+  const lastName = req.query.lastName;
+  const gradeLevel = req.query.gradeLevel;
+  const id = generateStudentId();
+  const newStudent = {
+    id,
+    firstName,
+    lastName,
+    gradeLevel,
+    points: 0,
+    events: []
+  };
+  studentArray.push(newStudent);
+  const newArray = JSON.stringify(studentArray);
+  fs.writeFileSync("./data/students.json", newArray);
+  res.status(201).send(newStudent);
 });
+function generateStudentId() {
+  let counter = 0;
+  for (let i = 0; i < studentArray.length; i++) {
+    if (studentArray[i].id * 1 === counter) {
+      counter++;
+      i = -1;
+    }
+  }
+  return counter;
+}
 module.exports = api;
 //# sourceMappingURL=api.js.map

@@ -108,6 +108,7 @@ async function updateTable() {
   }
   rowCount = 0;
   for (let i = 0; i < students.length; i++) {
+    rowCount++;
     const newRow = studentRoster.insertRow(i + 1);
     const newFirst = newRow.insertCell(0);
     const newLast = newRow.insertCell(1);
@@ -119,9 +120,15 @@ async function updateTable() {
     newGrade.innerHTML = students[i].gradeLevel;
     newPoints.innerHTML = students[i].points;
     newID.innerHTML = students[i].id;
-    rowCount++;
+    newRow.addEventListener('click', (event) => {
+      navigateToStudentPage(students[i].id);
+    });
   }
   currentStudents = students;
+}
+
+async function navigateToStudentPage(id) {
+  window.location.href = `/app/students/${id}`;
 }
 
 async function deleteRow(rowIndex) {
