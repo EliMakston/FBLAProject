@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/options.js"],
-  "sourcesContent": ["const studentSubmit = document.getElementById('student-submit');\nconst log = document.getElementById('log');\nconst studentResponse = document.getElementById('student-response');\n\nstudentSubmit.addEventListener('click', async (event) => {\n  event.preventDefault();\n  createStudent();\n});\n\nasync function createStudent() {\n  const firstName = document.getElementById('first-name').value;\n  const lastName = document.getElementById('last-name').value;\n  const gradeLevel = document.getElementById('grade-level').value;\n  const response = await fetch(`/api/students/?firstName=${firstName}&lastName=${lastName}&gradeLevel=${gradeLevel}`,  {\n    method: 'POST'\n  });\n  if (response.ok) {\n    const newStudent = await response.json();\n    studentResponse.innerHTML = `Successfully created a student (${newStudent.firstName} ${newStudent.lastName} - ID: ${newStudent.id})`;\n  }\n}"],
-  "mappings": ";AAAA,MAAM,gBAAgB,SAAS,eAAe,gBAAgB;AAC9D,MAAM,MAAM,SAAS,eAAe,KAAK;AACzC,MAAM,kBAAkB,SAAS,eAAe,kBAAkB;AAElE,cAAc,iBAAiB,SAAS,OAAO,UAAU;AACvD,QAAM,eAAe;AACrB,gBAAc;AAChB,CAAC;AAED,eAAe,gBAAgB;AAC7B,QAAM,YAAY,SAAS,eAAe,YAAY,EAAE;AACxD,QAAM,WAAW,SAAS,eAAe,WAAW,EAAE;AACtD,QAAM,aAAa,SAAS,eAAe,aAAa,EAAE;AAC1D,QAAM,WAAW,MAAM,MAAM,4BAA4B,sBAAsB,uBAAuB,cAAe;AAAA,IACnH,QAAQ;AAAA,EACV,CAAC;AACD,MAAI,SAAS,IAAI;AACf,UAAM,aAAa,MAAM,SAAS,KAAK;AACvC,oBAAgB,YAAY,mCAAmC,WAAW,aAAa,WAAW,kBAAkB,WAAW;AAAA,EACjI;AACF;",
-  "names": []
-}
