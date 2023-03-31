@@ -96,3 +96,7 @@ input {
   border: 1px, solid, black;
   border-radius: 4px;
 }
+
+#students-heading {
+  margin-left: 0px;
+}

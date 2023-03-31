@@ -7,6 +7,29 @@ const nameHeading = document.getElementById("name-heading");
 const gradeHeading = document.getElementById("grade-heading");
 const pointsHeading = document.getElementById("points-heading");
 const eventTable = document.getElementById("event-table");
+const eventSelect = document.getElementById("event-add");
+const eventForm = document.getElementById("event-form");
+let rowCount = 0;
+let optionCount = 0;
+eventForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  let id = "";
+  for (let i = path.length - 1; i >= 0; i--) {
+    if (path[i] === "/") {
+      break;
+    }
+    id += path[i];
+  }
+  const eventId = eventSelect.value;
+  const response = await fetch(`/api/students/${id}/events/${eventId}`, {
+    method: "POST"
+  });
+  if (response.ok) {
+    const response2 = document.getElementById("response");
+    response2.innerHTML = "Added event";
+    populatePage();
+  }
+});
 populatePage();
 async function getStudentData() {
   let id = "";
@@ -27,6 +50,7 @@ async function populatePage() {
   gradeHeading.innerHTML = `Grade ${studentData.gradeLevel}`;
   pointsHeading.innerHTML = `Points: ${studentData.points}`;
   updateTable();
+  updateSelect();
 }
 async function updateTable() {
   const eventsAttended = studentData.events;
@@ -39,7 +63,12 @@ async function updateTable() {
       }
     }
   }
+  for (let i = 0; i < rowCount; i++) {
+    deleteRow(1);
+  }
+  rowCount = 0;
   for (let i = 0; i < events.length; i++) {
+    rowCount++;
     const newRow = eventTable.insertRow(i + 1);
     const newName = newRow.insertCell(0);
     const newPoints = newRow.insertCell(1);
@@ -57,5 +86,25 @@ async function gatherEventData() {
   } catch (error) {
     console.log(error);
   }
+}
+async function updateSelect() {
+  for (let i = 0; i < optionCount; i++) {
+    deleteOption(0);
+  }
+  optionCount = 0;
+  const events = await gatherEventData();
+  for (let i = 0; i < events.length; i++) {
+    const option = document.createElement("option");
+    optionCount++;
+    option.text = events[i].name;
+    option.value = events[i].id;
+    eventSelect.add(option);
+  }
+}
+async function deleteRow(rowIndex) {
+  eventTable.deleteRow(rowIndex);
+}
+async function deleteOption(index) {
+  eventSelect.remove(eventSelect.index);
 }
 //# sourceMappingURL=profile.js.map

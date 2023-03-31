@@ -67,6 +67,27 @@ api.post("/students", (req, res) => {
   fs.writeFileSync("./data/students.json", newArray);
   res.status(201).send(newStudent);
 });
+api.post("/students/:studentId/events/:eventId", (req, res) => {
+  const studentId = req.params.studentId;
+  const eventId = req.params.eventId;
+  let studentIndex = 0;
+  let eventIndex = 0;
+  for (let i = 0; i < studentArray.length; i++) {
+    if (studentArray[i].id === studentId) {
+      studentIndex = i;
+    }
+  }
+  for (let i = 0; i < eventArray.length; i++) {
+    if (eventArray[i].id === eventId) {
+      eventIndex = i;
+    }
+  }
+  studentArray[studentIndex].events.push(eventId);
+  studentArray[studentIndex].points = Number(studentArray[studentIndex].points) + Number(eventArray[eventIndex].points);
+  const newArray = JSON.stringify(studentArray);
+  fs.writeFileSync("./data/students.json", newArray);
+  res.status(201).send(studentArray[studentIndex].events);
+});
 api.get("/events", (req, res) => {
   res.status(200).send(eventArray);
 });

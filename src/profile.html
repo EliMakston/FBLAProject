@@ -11,6 +11,7 @@
   </div></a>
   <div id='content'>
     <h1>Profile page</h1>
+    <a href='/app/students' id='students-heading'><- Back To Students</a>
     <h2 id='name-heading'></h2>
     <h3 id='grade-heading'></h3>
     <h3 id='points-heading'></h3>
@@ -22,6 +23,14 @@
         <th id='idHead'>Event ID</th>
       </tr>
     </table>
+    <form id='event-form'>
+      <label for="event-add">Add an event: </label>
+      <br/>
+      <select id="event-add" name="event-add">
+      </select>
+      <input type='submit'/>
+    </form>
+    <h4 id='response'></h4>
   </div>
   <p id='log'></p>
   <script src="profile.js"></script>
