@@ -45,7 +45,7 @@ api.post('/students', (req, res) => {
   const gradeLevel = req.query.gradeLevel;
   const id = generateStudentId();
   const newStudent = {
-    id: id,
+    id: id.toString(),
     firstName: firstName,
     lastName: lastName,
     gradeLevel: gradeLevel,
