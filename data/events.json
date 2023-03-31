@@ -1,17 +1,1 @@
-[
-  {
-    "id": "0",
-    "name": "Basketball v. Apollo",
-    "points": "10"
-  },
-  {
-    "id": "1",
-    "name": "Spring Assembly",
-    "points": "4"
-  },
-  {
-    "id": "2",
-    "name": "Friday Flag Raising",
-    "points": "1"
-  }
-]
+[{"id":"0","name":"Basketball v. Apollo","points":"10"},{"id":"1","name":"Spring Assembly","points":"4"},{"id":"2","name":"Friday Flag Raising","points":"1"}]

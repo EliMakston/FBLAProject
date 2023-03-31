@@ -60,11 +60,37 @@ api.post('/students', (req, res) => {
 
 api.get('/events', (req, res) => {
   res.status(200).send(eventArray);
-})
+});
+
+api.post('/events', (req, res) => {
+  const name = req.query.name;
+  const points = req.query.points;
+  const id = generateEventId();
+  const newEvent = {
+    id: id,
+    name: name,
+    points: points
+  }
+  eventArray.push(newEvent);
+  const newArray = JSON.stringify(eventArray);
+  fs.writeFileSync('./data/events.json', newArray);
+  res.status(201).send(newEvent);
+});
 
 function generateStudentId() {
   let counter = 0;
   for (let i = 0; i < studentArray.length; i++) {
+    if (studentArray[i].id * 1 === counter) {
+      counter++;
+      i = -1;
+    }
+  }
+  return counter;
+}
+
+function generateEventId() {
+  let counter = 0;
+  for (let i = 0; i < eventArray.length; i++) {
     if (studentArray[i].id * 1 === counter) {
       counter++;
       i = -1;
