@@ -27,6 +27,7 @@ api.get("/", (req, res) => {
   res.send("GET: API root");
 });
 const studentArray = JSON.parse(fs.readFileSync("./data/students.json"));
+const eventArray = JSON.parse(fs.readFileSync("./data/events.json"));
 api.get("/students", (req, res) => {
   const gradeLevel = req.query.gradeLevel;
   if (!gradeLevel) {
@@ -39,6 +40,14 @@ api.get("/students", (req, res) => {
     }
   }
   res.send(temp);
+});
+api.get("/students/:id", (req, res) => {
+  const id = req.params.id;
+  for (let i = 0; i < studentArray.length; i++) {
+    if (studentArray[i].id === id) {
+      res.send(studentArray[i]).status(200);
+    }
+  }
 });
 api.post("/students", (req, res) => {
   const firstName = req.query.firstName;
@@ -57,6 +66,9 @@ api.post("/students", (req, res) => {
   const newArray = JSON.stringify(studentArray);
   fs.writeFileSync("./data/students.json", newArray);
   res.status(201).send(newStudent);
+});
+api.get("/events", (req, res) => {
+  res.status(200).send(eventArray);
 });
 function generateStudentId() {
   let counter = 0;

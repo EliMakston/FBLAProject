@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/events.js"],
+  "sourcesContent": ["const log = document.getElementById('log');\nconst eventTable = document.getElementById('eventTable');\n\nasync function updateTable() {\n  const events = await gatherEventData();\n  for (let i = 0; i < events.length; i++) {\n    const newRow = eventTable.insertRow(i + 1);\n    const newName = newRow.insertCell(0);\n    const newPoints = newRow.insertCell(1);\n    const newID = newRow.insertCell(2);\n    newName.innerHTML = events[i].name;\n    newPoints.innerHTML = events[i].points;\n    newID.innerHTML = events[i].id;\n  }\n}\n\nasync function gatherEventData() {\n  let url = '/api/events'\n  try {\n    const eventsResponse =  await fetch(url);\n    return await eventsResponse.json();\n  } catch (error) {\n    console.log(error);\n  }\n}\n\nupdateTable();"],
+  "mappings": ";AAAA,MAAM,MAAM,SAAS,eAAe,KAAK;AACzC,MAAM,aAAa,SAAS,eAAe,YAAY;AAEvD,eAAe,cAAc;AAC3B,QAAM,SAAS,MAAM,gBAAgB;AACrC,WAAS,IAAI,GAAG,IAAI,OAAO,QAAQ,KAAK;AACtC,UAAM,SAAS,WAAW,UAAU,IAAI,CAAC;AACzC,UAAM,UAAU,OAAO,WAAW,CAAC;AACnC,UAAM,YAAY,OAAO,WAAW,CAAC;AACrC,UAAM,QAAQ,OAAO,WAAW,CAAC;AACjC,YAAQ,YAAY,OAAO,GAAG;AAC9B,cAAU,YAAY,OAAO,GAAG;AAChC,UAAM,YAAY,OAAO,GAAG;AAAA,EAC9B;AACF;AAEA,eAAe,kBAAkB;AAC/B,MAAI,MAAM;AACV,MAAI;AACF,UAAM,iBAAkB,MAAM,MAAM,GAAG;AACvC,WAAO,MAAM,eAAe,KAAK;AAAA,EACnC,SAAS,OAAP;AACA,YAAQ,IAAI,KAAK;AAAA,EACnB;AACF;AAEA,YAAY;",
+  "names": []
+}
